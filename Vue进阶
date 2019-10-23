@@ -1,0 +1,47 @@
+Vue进阶
+组件分类：
+	1.由vue-router产生的页面，可以称之为路由组件
+	2.独立基础组件：例如Date和input这类的可以全局复用的基础组件
+	3.业务组件，除了以上两种就是业务组件
+组件精髓
+	props
+		tppe类型
+		default默认
+			如果是对象、数组，必须要写成方法进行返回
+		validator校验，有一个参数value
+		inheritAttrs是否继承html属性
+		子组件不能修改父组件传递过来的prop
+	event
+		方法1：
+		<parent-com @on-click="handleClick"></parent-com>
+		子组件
+		<button>点击</button>
+		在子组件中触发
+		this.$emit('on-click', event);
+		
+		方法2：
+		加上.native就是原生方法
+		<parent-com @click.native="handleClick"></parent-com>
+		子组件
+		<button>点击</button>
+	slot
+		<slot>节点就是指定的一个插槽的位置，v-slot:[name]可以指定插槽的位置，有了name就叫具名插槽
+		具名slot
+			元素可以用一个特殊的属性name来配置如何分发内容，多个slot可以有不同的名字。具名slot将匹配内容片段中有对应slot特性的元素，
+			父组件
+			<slotshow>
+				<p>{{msg}}</p>
+				<h6 slot="xxx">就是没有废话！</h6>
+        
+				vue2.6以上的版本是这样的
+				<h6 v-slot:xxx>就是没有废话！</h6>
+			</slotshow>
+			子组件
+			<div class="slotcontent">
+				<slot></slot>
+				<slot name="xxx"></slot>
+			</div>
+	作用域插槽
+		作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+		在子组件中，只需将数据传递到插槽，就像将props传递给组件一样，插槽的内容就可以使用这个传递过来的数据在父级中，
+		具有特殊属性scope的

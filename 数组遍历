@@ -1,0 +1,47 @@
+JS数组遍历方法
+1.for循环
+	使用临时变量，将长度缓存起来，避免重复获取数组长度，当数组较大时优化效果才会比较明显。
+	for(j=0; len=arr.lengtj; j<len; j++){
+		
+	}
+	
+2.foreach循环
+	遍历数组中的每一项，没有返回值，对原数组没有影响，不支持IE
+	//1.没有返回值
+	arr.forEach((item, index, array) =>{
+		//执行代码
+	})
+	//参数：value数组中的当前项，index当前项的索引，array原始数组
+	//数组中有几项，那么传递进去的匿名回调函数就需要执行几次
+	
+3.map循环
+	有返回值，可以return出来
+	map的回调函数中支持return返回值；return的是什么，相当于把数组中的这一项变为什么（并不影响原数组），
+	相当于把原数组克隆一份，把克隆的这一份数组中的对应项改了
+	arr.map( (value, index, array){
+		//do somethings
+		return xxx
+	})
+
+4.for of遍历
+	可以正确响应break、continue、return语句
+	for(var value of myArray){
+		console(value);
+	}
+
+5.filter遍历
+	不会改变原始数组，返回新数组
+	arr.filter((item)=>{
+		return item.done;
+	});
+
+6.every遍历
+	every()是对数组中的每一项运行给定函数，如果该函数对每一项返回true，则返回true
+	var arr=[1,2,3,4,5,6];
+	console.log(arr.every((item,index,array){
+		return item>3;
+	}));
+	//false
+
+
+	
